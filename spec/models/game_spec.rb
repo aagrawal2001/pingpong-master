@@ -24,6 +24,19 @@ describe Game, type: :model  do
   end
 
   it "validates that player 1 and 2 are different" do
+    game.player_1 = game.player_2
+    expect(game).not_to be_valid
+  end
 
+  it "validates that at least one player has a score of 21 or higher" do
+    game.player_1_score = 20
+    game.player_2_score = 10
+    expect(game).not_to be_valid
+  end
+
+  it "validates that the difference in scores is at least 2" do
+    game.player_1_score = 21
+    game.player_2_score = 20
+    expect(game).not_to be_valid
   end
 end

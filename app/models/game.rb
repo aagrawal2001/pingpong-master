@@ -17,6 +17,19 @@ class Game < ActiveRecord::Base
     player_1_score >= WINNING_SCORE ? player_1 : player_2
   end
 
+  # Find all games that include this user_id
+  def self.including_user(user_id)
+    where('player_1_id = ? OR player_2_id = ?', user_id, user_id).order(date: :desc)
+  end
+
+  def opponent(player)
+    player == player_1 ? player_2 : player_1
+  end
+
+  def player_score(player)
+    player == player_1 ? player_1_score : player_2_score
+  end
+
   private
 
   def players_are_different

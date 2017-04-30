@@ -23,4 +23,7 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
 end
 
-gem 'pry'
+group :development do
+  gem 'pry'
+end
+

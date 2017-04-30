@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>Rank</th>
+    <th>Email</th>
+    <th>Score</th>
+    <th>Games Played</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @scores.each_with_index do |score, index| %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= score.user.email %></td>
+      <td><%= score.score %></td>
+      <td><%= score.games_played %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

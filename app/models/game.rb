@@ -10,8 +10,10 @@ class Game < ActiveRecord::Base
   validates :player_2_score, presence: true
   validates :player_1_score, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :player_2_score, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-
   validate :players_are_different, :there_is_a_winner
+
+  # Hooks
+  after_create :update_scores
 
   def winner
     player_1_score >= WINNING_SCORE ? player_1 : player_2
@@ -55,6 +57,10 @@ class Game < ActiveRecord::Base
     if (player_1_score - player_2_score).abs < MIN_SCORE_GAP_FOR_WIN
       errors.add(:base, "the difference in scores must be at least #{MIN_SCORE_GAP_FOR_WIN}")
     end
+  end
+
+  def update_scores
+    Score.update_scores_from_game_result(self)
   end
 end
 

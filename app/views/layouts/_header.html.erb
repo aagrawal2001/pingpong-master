@@ -16,7 +16,7 @@
       <%= link_to 'Log Game', new_game_path, class: 'btn btn-success navbar-btn' %>
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
-          <li><%= link_to 'Leadboard', root_path %></li>
+          <li><%= link_to 'Leaderboard', scores_path %></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">

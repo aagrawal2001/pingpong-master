@@ -55,6 +55,8 @@ class Score < ActiveRecord::Base
     order(score: :desc)
   end
 
+  private
+
   def self.players_with_higher_score(score)
     Score.where('score > ?', score).count
   end

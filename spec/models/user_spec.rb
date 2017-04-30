@@ -9,4 +9,9 @@ describe User, type: :model  do
       expect(user_3.possible_opponents).to match_array([user_1, user_2])
     end
   end
+
+  it "creates a Score entry for each new user" do
+    expect(Score).to receive(:create_entry_for_user)
+    create(:user)
+  end
 end

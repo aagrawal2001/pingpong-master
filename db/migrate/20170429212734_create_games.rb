@@ -8,7 +8,7 @@ class CreateGames < ActiveRecord::Migration
       t.integer :player_2_score, null: false
       t.timestamps null: false
     end
-    add_foreign_key :users, :player_1, column: :player_1_id
-    add_foreign_key :users, :player_2, column: :player_2_id
+    add_foreign_key :games, :users, column: :player_1_id
+    add_foreign_key :games, :users, column: :player_2_id
   end
 end
